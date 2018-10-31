@@ -1,0 +1,45 @@
+# dun return invalid child
+def child_node(node, item, taken, best_node):
+		path = node.path
+		path.append(taken)
+
+		if taken:
+			if item.weight <= node.room:
+				child = Node(node.value+item.value, node.room - item.weight, node.estimate, path)
+		else:
+			child = Node(node.value, node.room, node.estimate-item.value, path)
+
+		# pruning
+		if best_node and child.estimate < best_node.estimate:
+			return None
+
+		return child
+
+def is_leaf(node):
+	if node.level == max_tree_depth
+		return True
+	return False
+
+1. create initial_node {value = 0; room = Capacity; estimate: Sum(items), path=[]}
+2. stack.add(initial_node)
+3. max_tree_depth = len(items)
+
+path = []
+best_node = None
+
+while (!stack.empty())
+	node = stack.pop()
+
+	# is it a leaf node ?
+	if not is_leaf(node):
+		# does the node has valid children ?
+		item = items[node.level + 1]
+		for taken in [0, 1]:
+			child = child_node(node, item, taken, best_node)
+
+			if child:
+				stack.append(child)
+			
+
+	
+		
